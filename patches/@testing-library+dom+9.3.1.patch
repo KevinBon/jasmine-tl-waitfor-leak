@@ -1,0 +1,23 @@
+diff --git a/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js b/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
+index 6eee618..ff868ed 100644
+--- a/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
++++ b/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
+@@ -1028,14 +1028,15 @@ function waitFor(callback, _ref) {
+           jest.advanceTimersByTime(interval);
+         });
+ 
++        // Could have timed-out
++        if (finished) {
++          break;
++        }
+         // It's really important that checkCallback is run *before* we flush
+         // in-flight promises. To be honest, I'm not sure why, and I can't quite
+         // think of a way to reproduce the problem in a test, but I spent
+         // an entire day banging my head against a wall on this.
+         checkCallback();
+-        if (finished) {
+-          break;
+-        }
+       }
+     } else {
+       try {
