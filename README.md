@@ -17,3 +17,7 @@ Against Node: `npm run test:node`
 ## Where is the test living?
 
 Under `waitForSpec.js`: https://github.com/KevinBon/jasmine-tl-waitfor-leak/blob/master/spec/waitForSpec.js
+
+## Can you prove that your fix is fixing `jasmine` + `jasmine.clock` behavior?
+
+See https://github.com/KevinBon/jasmine-tl-waitfor-leak/pull/1
