@@ -4,13 +4,14 @@
   "description": "Demo of testing a React app in the browser using jasmine-browser-runner",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve  --hot --open --mode development",
-    "build": "webpack --config webpack.config.js --mode production",
-    "test:build": "npx webpack --config webpack-test.config.js --mode development",
-    "test:watch": "npx webpack --config webpack-test.config.js --mode development --watch",
+    "start": "patch-package && webpack serve  --hot --open --mode development",
+    "build": "patch-package && webpack --config webpack.config.js --mode production",
+    "test:build": "patch-package && npx webpack --config webpack-test.config.js --mode development",
+    "test:watch": "patch-package && npx webpack --config webpack-test.config.js --mode development --watch",
     "test": "npm run test:build && jasmine-browser-runner runSpecs --browser=headlessChrome",
     "test:serve": "npm run test:build && jasmine-browser-runner",
-    "test:node": "cross-env NODE_ENV=test jasmine"
+    "test:node": "patch-package && cross-env NODE_ENV=test jasmine",
+    "patch-tl-dom": "patch-package @testing-library/dom"
   },
   "author": "Stephen Gravrock",
   "license": "MIT",
@@ -33,6 +34,7 @@
     "jasmine-browser-runner": "^2.0.0",
     "jasmine-core": "^5.0.1",
     "jsdom": "^22.1.0",
+    "patch-package": "^8.0.0",
     "prettier": "3.0.3",
     "webpack": "^5.87.0",
     "webpack-cli": "^5.1.4",

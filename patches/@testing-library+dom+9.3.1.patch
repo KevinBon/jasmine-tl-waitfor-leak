@@ -1,0 +1,39 @@
+diff --git a/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js b/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
+index 6eee618..0d4feea 100644
+--- a/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
++++ b/node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
+@@ -1053,6 +1053,9 @@ function waitFor(callback, _ref) {
+       checkCallback();
+     }
+     function onDone(error, result) {
++      if (finished) {
++        return
++      }
+       finished = true;
+       clearTimeout(overallTimeoutTimer);
+       if (!usingJestFakeTimers) {
+@@ -1075,7 +1078,13 @@ function waitFor(callback, _ref) {
+       }
+     }
+     function checkCallback() {
+-      if (promiseStatus === 'pending') return;
++      if (finished) {
++        console.log('fix applied: will not call checkCallback')
++        return
++      }
++      if (promiseStatus === 'pending') {
++        return
++      }
+       try {
+         const result = runWithExpensiveErrorDiagnosticsDisabled(callback);
+         if (typeof (result == null ? void 0 : result.then) === 'function') {
+@@ -1097,6 +1106,9 @@ function waitFor(callback, _ref) {
+       }
+     }
+     function handleTimeout() {
++      if (finished) {
++        return
++      }
+       let error;
+       if (lastError) {
+         error = lastError;
