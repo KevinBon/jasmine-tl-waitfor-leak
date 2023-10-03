@@ -9,7 +9,9 @@ npm ci
 ## To run the test
 
 Against Chrome headless: `npm run test`
+
 Against your Chrome browser: `npm run test:serve`
+
 Against Node: `npm run test:node`
 
 ## Where is the test living?
