@@ -10,7 +10,7 @@
     "test:watch": "patch-package && npx webpack --config webpack-test.config.js --mode development --watch",
     "test": "npm run test:build && jasmine-browser-runner runSpecs --browser=headlessChrome",
     "test:serve": "npm run test:build && jasmine-browser-runner",
-    "test:node": "patch-package && cross-env NODE_ENV=test jasmine",
+    "test:node": "npm run test:build && cross-env NODE_ENV=test jasmine",
     "patch-tl-dom": "patch-package @testing-library/dom"
   },
   "author": "Stephen Gravrock",
